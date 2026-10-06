@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sherief Nooh: security and logistics operations. Former Major, Egyptian Ministry of Interior.">
+<title>Sherief Nooh Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an operations-order dossier. Single column, grid-reference eyebrows, map-grid ground, one amber signal accent. */
+:root{
+  --ground:#E9EDEF; --paper:#F6F8F9; --ink:#15202A; --muted:#55636F; --line:#C9D1D7;
+  --steel:#33546B; --signal:#B4620A; --signal-soft:#F3E3CF; --ok:#2F6B4A; --ok-soft:#DCEBE1;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#0F161C; --paper:#151F27; --ink:#E4E9ED; --muted:#98A6B1; --line:#2A3843;
+  --steel:#8FB3CC; --signal:#E8A04A; --signal-soft:#3A2A16; --ok:#7CC49A; --ok-soft:#173226; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ground:#0F161C; --paper:#151F27; --ink:#E4E9ED; --muted:#98A6B1; --line:#2A3843;
+  --steel:#8FB3CC; --signal:#E8A04A; --signal-soft:#3A2A16; --ok:#7CC49A; --ok-soft:#173226; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:400 1.0625rem/1.6 var(--body);
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;background-attachment:fixed;background-position:-1px -1px}
+body::before{content:"";position:fixed;inset:0;background:var(--ground);opacity:.82;z-index:-1;pointer-events:none}
+.wrap{max-width:60rem;margin:0 auto;padding-inline:20px;padding-block:28px 64px;display:grid;gap:56px}
+a{color:var(--steel)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+h2{font-size:clamp(2rem,5vw,2.75rem);font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+h3{font-size:1.5rem;font-weight:600}
+p{margin:0;max-width:65ch}
+.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--signal);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.eyebrow::after{content:"";flex:1;min-width:40px;height:1px;background:var(--line)}
+.sec{display:grid;gap:22px}
+
+/* hero */
+.hero{display:grid;gap:22px;padding-top:12px}
+.coords{font:400 .78rem/1.4 var(--mono);color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px}
+.coords b{color:var(--ink);font-weight:500}
+.hero h1{font-size:clamp(3.4rem,13vw,7.5rem);font-weight:700;text-transform:uppercase;letter-spacing:-.005em;line-height:.88}
+.hero h1 span{color:var(--signal)}
+.role{font:600 clamp(1.25rem,3.4vw,1.6rem)/1.2 var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--steel)}
+.lede{font-size:1.15rem;max-width:58ch}
+.status{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 .74rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;border:1px solid var(--line);background:var(--paper);border-radius:2px}
+.chip.go{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{font:600 1rem/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding:13px 18px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;border-radius:2px}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{border-color:var(--signal)}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1.5px solid var(--ink)}
+.fact{padding:16px 14px;display:grid;gap:4px;border-right:1px solid var(--line)}
+.fact:last-child{border-right:0}
+.fact strong{font:700 2.3rem/1 var(--display);font-variant-numeric:tabular-nums}
+.fact span{font-size:.9rem;color:var(--muted);line-height:1.35}
+@media (max-width:640px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.fact:nth-child(2){border-right:0}.fact:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* case files */
+.cases{display:grid;gap:14px}
+.case{background:var(--paper);border:1px solid var(--line);display:grid;grid-template-columns:9.5rem minmax(0,1fr)}
+.case-tag{padding:18px 16px;border-right:1px dashed var(--line);font:400 .75rem/1.5 var(--mono);color:var(--muted);display:grid;align-content:start;gap:6px}
+.case-tag b{font:500 .82rem/1.2 var(--mono);color:var(--signal);letter-spacing:.06em}
+.case-body{padding:18px 20px;display:grid;gap:12px;min-width:0}
+.sbr{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:6px 14px;font-size:.98rem}
+.sbr dt{font:500 .72rem/1.9 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.sbr dd{margin:0}
+@media (max-width:640px){.case{grid-template-columns:1fr}.case-tag{border-right:0;border-bottom:1px dashed var(--line);grid-auto-flow:column;justify-content:start;gap:14px}.sbr{grid-template-columns:1fr;gap:2px}.sbr dd{margin-bottom:8px}}
+
+/* repos */
+.repos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:700px){.repos{grid-template-columns:1fr}}
+.repo{background:var(--paper);border:1px solid var(--line);padding:18px;display:grid;gap:10px;align-content:start;min-width:0}
+.repo-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.repo-name{font:500 .95rem/1.3 var(--mono);color:var(--steel);word-break:break-word}
+.state{font:500 .68rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;border-radius:2px;background:var(--signal-soft);color:var(--signal);white-space:nowrap}
+.origin{font-size:.85rem;color:var(--muted)}
+.stack{display:flex;flex-wrap:wrap;gap:6px}
+.stack span{font:400 .72rem/1 var(--mono);padding:5px 7px;border:1px solid var(--line);border-radius:2px;color:var(--muted)}
+.note{font-size:.92rem;color:var(--muted);border-left:3px solid var(--signal);padding-left:12px}
+
+/* timeline */
+.timeline{display:grid;gap:0;border-left:1.5px solid var(--ink);margin-left:6px}
+.post{position:relative;padding:0 0 26px 24px;display:grid;gap:6px}
+.post::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:var(--ground);border:2px solid var(--ink)}
+.post.now::before{background:var(--signal);border-color:var(--signal)}
+.when{font:500 .78rem/1.3 var(--mono);color:var(--muted);letter-spacing:.04em}
+.where{color:var(--muted);font-size:.95rem}
+.post ul{margin:4px 0 0;padding-left:18px;display:grid;gap:4px;max-width:65ch}
+
+/* creds */
+.creds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:760px){.creds{grid-template-columns:1fr}}
+.creds h3{font-size:1.15rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:1.5px solid var(--ink);padding-bottom:8px;margin-bottom:10px}
+.creds ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:.98rem}
+.creds li small{display:block;color:var(--muted);font:400 .75rem/1.4 var(--mono)}
+.lvl{font:500 .68rem/1 var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-left:6px}
+
+/* contact */
+.contact{background:var(--ink);color:var(--paper);padding:28px 22px;display:grid;gap:18px}
+.contact h2{color:var(--paper)}
+.contact .eyebrow{color:var(--signal)}
+.contact .eyebrow::after{background:color-mix(in srgb,var(--paper) 30%,transparent)}
+.rows{display:grid;gap:10px}
+.row{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font:400 .98rem/1.4 var(--mono)}
+.row span:first-child{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.7;width:6.5rem}
+.row a{color:var(--paper)}
+.copy{font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;background:transparent;color:var(--paper);border:1px solid color-mix(in srgb,var(--paper) 45%,transparent);border-radius:2px;cursor:pointer}
+footer{font:400 .75rem/1.5 var(--mono);color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.hero h1{animation:rise .7s ease-out both}@keyframes rise{from{transform:translateY(8px);opacity:.4}to{transform:none;opacity:1}}}
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+  <header class="hero">
+    <div class="coords"><span>SERVICE <b>2013 – 2025</b> Ministry of Interior</span><span>CONSULTING <b>2025 – now</b></span></div>
+    <h1>Sherief<br><span>Nooh</span></h1>
+    <div class="role">Security &amp; Logistics Operations</div>
+    <p class="lede">Former Major, Egyptian Ministry of Interior. Twelve years running security operations, fleet and dispatch, and large-event logistics in high-compliance environments. Now advising clients on risk, SOPs and operational readiness.</p>
+    <div class="status">
+      <span class="chip go">Available immediately</span>
+      <span class="chip">UAE residency to Oct 2027</span>
+      <span class="chip">UAE driving license</span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#case-files">View case files</a>
+      <a class="btn" href="https://www.linkedin.com/in/sherief-nouh/">LinkedIn</a>
+      <a class="btn" href="https://github.com/sherief-nooh">GitHub</a>
+    </div>
+  </header>
+
+  <section class="facts" aria-label="Key facts">
+    <div class="fact"><strong>200+</strong><span>vehicles in fleet and dispatch operations</span></div>
+    <div class="fact"><strong>500+</strong><span>personnel led across 5+ sites</span></div>
+    <div class="fact"><strong>~35%</strong><span>reduction in fleet fuel consumption</span></div>
+    <div class="fact"><strong>1,000+</strong><span>cadets and officers trained</span></div>
+  </section>
+
+  <section class="sec" id="case-files">
+    <div class="eyebrow">Section A · Case files</div>
+    <h2>Selected work</h2>
+    <p>Real operations, described at a level that keeps sensitive details out. Each file follows the same order: situation, what I did, result.</p>
+    <div class="cases">
+
+      <article class="case">
+        <div class="case-tag"><b>FILE A-1</b><span>MOI · Cairo</span><span>Data &amp; reporting</span></div>
+        <div class="case-body">
+          <h3>Closed-system performance database for 13 departments</h3>
+          <dl class="sbr">
+            <dt>Situation</dt><dd>Performance reporting across departments ran on paper, which made trends slow to see and hard to compare.</dd>
+            <dt>Action</dt><dd>Designed and built an offline, non-networked database so every department reported into one structure. Trained cadets on structured digital reporting and dashboards.</dd>
+            <dt>Result</dt><dd>One consistent source for performance tracking, faster reporting, and confidentiality kept intact.</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-tag"><b>FILE A-2</b><span>25 Jan 2025</span><span>Event logistics</span></div>
+        <div class="case-body">
+          <h3>Egyptian Police Day 2025</h3>
+          <dl class="sbr">
+            <dt>Situation</dt><dd>A national event spread across a 91-feddan site with large formations from several MOI and partner units.</dd>
+            <dt>Action</dt><dd>Supported logistics and multi-agency coordination at supervisory level: task distribution, movement timing, escalation handling and reporting.</dd>
+            <dt>Result</dt><dd>Coordinated delivery across units on a site of national profile.</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-tag"><b>FILE A-3</b><span>MOI · Cairo</span><span>Fleet</span></div>
+        <div class="case-body">
+          <h3>Fleet readiness and fuel control for 200+ vehicles</h3>
+          <dl class="sbr">
+            <dt>Situation</dt><dd>A fleet of 200+ vehicles across 5+ sites ran 100+ movements a day. Unplanned downtime and high fuel use put time-sensitive operations at risk.</dd>
+            <dt>Action</dt><dd>Introduced predictive maintenance tracking of recurring faults and service history, with closure monitoring on every job. Set up fuel monitoring per vehicle and followed up on variances with drivers and workshops.</dd>
+            <dt>Result</dt><dd>About 35% lower fuel consumption, better fleet availability and less downtime across dispatch operations.</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-tag"><b>FILE A-4</b><span>MOI · Cairo</span><span>Warehouse</span></div>
+        <div class="case-body">
+          <h3>FIFO / FEFO warehouse discipline</h3>
+          <dl class="sbr">
+            <dt>Situation</dt><dd>Stock issue order was inconsistent, which raised the risk of expired or aged items.</dd>
+            <dt>Action</dt><dd>Set FIFO/FEFO rules through governance and supervision, with briefings and audit follow-up.</dd>
+            <dt>Result</dt><dd>Stronger inventory accuracy and audit readiness.</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-tag"><b>FILE A-5</b><span>2025 – now</span><span>Consulting</span></div>
+        <div class="case-body">
+          <h3>Security and logistics advisory for private clients</h3>
+          <dl class="sbr">
+            <dt>Situation</dt><dd>Clients in logistics, security and construction in the UAE and Egypt needed documented risk controls and procedures.</dd>
+            <dt>Action</dt><dd>Delivered risk, threat and vulnerability assessments with risk registers; wrote SOP manuals for security, journey management, fleet and dispatch; ran compliance and HSE reviews and staff training.</dd>
+            <dt>Result</dt><dd>Audit-ready documentation and 50+ client staff trained on security procedures, incident reporting and emergency response.</dd>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="eyebrow">Section B · Open projects</div>
+    <h2>Tools I am building</h2>
+    <p>Public versions of the work above, rebuilt with synthetic data so they can be shared openly.</p>
+    <div class="repos">
+      <article class="repo">
+        <div class="repo-head"><span class="repo-name">fleet-readiness-dashboard</span><span class="state">In progress</span></div>
+        <p>Vehicle availability, maintenance backlog, fuel use per vehicle and repeat-fault alerts for a mock fleet.</p>
+        <div class="origin">Based on: File A-3</div>
+        <div class="stack"><span>Python</span><span>Pandas</span><span>Power BI</span></div>
+      </article>
+      <article class="repo">
+        <div class="repo-head"><span class="repo-name">security-risk-register</span><span class="state">In progress</span></div>
+        <p>A 5×5 likelihood and impact risk register with scoring, heat map and mitigation tracking for a sample site.</p>
+        <div class="origin">Based on: File A-5</div>
+        <div class="stack"><span>Excel</span><span>Python</span></div>
+      </article>
+      <article class="repo">
+        <div class="repo-head"><span class="repo-name">ops-sop-library</span><span class="state">In progress</span></div>
+        <p>Template SOPs for journey management, dispatch, incident reporting and evacuation, written for reuse.</p>
+        <div class="origin">Based on: File A-5</div>
+        <div class="stack"><span>Markdown</span><span>Templates</span></div>
+      </article>
+      <article class="repo">
+        <div class="repo-head"><span class="repo-name">dept-performance-db</span><span class="state">In progress</span></div>
+        <p>A demo of the multi-department reporting database: schema, sample data and the SQL behind the monthly report.</p>
+        <div class="origin">Based on: File A-1</div>
+        <div class="stack"><span>SQL</span><span>SQLite</span><span>Excel</span></div>
+      </article>
+    </div>
+    <p class="note">Follow progress at <a href="https://github.com/sherief-nooh">github.com/sherief-nooh</a>. Repository links appear here as each project is published.</p>
+  </section>
+
+  <section class="sec" id="service">
+    <div class="eyebrow">Section C · Service record</div>
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="post now">
+        <span class="when">OCT 2025 – PRESENT</span>
+        <h3>Security Logistics Consultant</h3>
+        <span class="where">Nooh Law Firm · Cairo, clients in the UAE and Egypt</span>
+        <ul><li>Risk assessments, security planning, SOP development and compliance reviews for logistics, security and construction clients.</li></ul>
+      </div>
+      <div class="post">
+        <span class="when">AUG 2017 – SEP 2025</span>
+        <h3>Security &amp; Logistics Operations Lead · Major</h3>
+        <span class="where">Egyptian Ministry of Interior · Cairo</span>
+        <ul>
+          <li>Directed fleet and dispatch operations for 200+ vehicles across 5+ sites, leading 500+ personnel with 24/7 readiness.</li>
+          <li>Coordinated 100+ daily movements and monthly dispatch schedules for 100+ drivers.</li>
+          <li>Supervised daily security operations: shift planning, post coverage, inspections, escalations and CCTV/access control oversight.</li>
+          <li>Planned security and logistics for 30+ official events and VIP movements a year, including visiting heads of state and religious delegations.</li>
+          <li>Managed vendors, procurement and fuel monitoring, reaching about 35% lower fuel consumption.</li>
+          <li>Owned monthly budget allocations within approved plans; produced Excel KPI dashboards for command leadership.</li>
+          <li>Trained 1,000+ cadets and officers as a qualified Training of Trainers instructor.</li>
+        </ul>
+      </div>
+      <div class="post">
+        <span class="when">AUG 2013 – AUG 2017</span>
+        <h3>Security &amp; Operations Coordinator · Captain</h3>
+        <span class="where">Egyptian Ministry of Interior · Alexandria</span>
+        <ul><li>Supported security operations, readiness planning, dispatch coordination and structured operational logging.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="credentials">
+    <div class="eyebrow">Section D · Credentials</div>
+    <h2>Training &amp; tools</h2>
+    <div class="creds">
+      <div>
+        <h3>Education</h3>
+        <ul>
+          <li>FIATA Higher Diploma in Supply Chain Management<small>AASTMT · May 2026</small></li>
+          <li>FIATA Diploma in Freight Forwarding<small>AASTMT · Oct 2025</small></li>
+          <li>Certificate of Appreciation, FIATA Diploma Group 20<small>EIFFA, Alexandria Chamber of Commerce · 2025</small></li>
+          <li>Bachelor of Laws &amp; Police Science<small>Egyptian Police Academy · Jul 2013</small></li>
+        </ul>
+      </div>
+      <div>
+        <h3>MOI training</h3>
+        <ul>
+          <li>VIP Protection, basic and advanced</li>
+          <li>Crisis Management in Conflict Zones</li>
+          <li>International Humanitarian Law (ICRC)</li>
+          <li>Training of Trainers, basic and advanced</li>
+          <li>Rapid Deployment Forces · Topography &amp; mapping</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Tools &amp; languages</h3>
+        <ul>
+          <li>Microsoft Excel <span class="lvl">Advanced · daily</span></li>
+          <li>Word, PowerPoint, Outlook <span class="lvl">Daily</span></li>
+          <li>Power BI, SQL, Python <span class="lvl">Self-trained</span></li>
+          <li>Arabic <span class="lvl">Native</span> · English <span class="lvl">C1</span></li>
+          <li>French <span class="lvl">A2</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="eyebrow">Section E · Contact</div>
+    <h2>Open to logistics, fleet and security roles</h2>
+    <div class="rows">
+      <div class="row"><span>Email</span><span id="email">sherief.nooh@gmail.com</span><button class="copy" type="button" id="copy-email">Copy</button></div>
+      <div class="row"><span>UAE</span><span>+971 50 775 2483</span></div>
+      <div class="row"><span>Egypt</span><span>+20 106 777 2483</span></div>
+      <div class="row"><span>LinkedIn</span><a href="https://www.linkedin.com/in/sherief-nouh/">linkedin.com/in/sherief-nouh</a></div>
+      <div class="row"><span>GitHub</span><a href="https://github.com/sherief-nooh">github.com/sherief-nooh</a></div>
+    </div>
+  </section>
+
+  <footer>Case files describe real work in general terms. Operational details from MOI service remain confidential.</footer>
+</main>
+
+<script>
+document.getElementById('copy-email').addEventListener('click',function(){
+  var b=this, t=document.getElementById('email').textContent;
+  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';}
+  try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1600)},sel);}catch(e){sel();}
+});
+</script>
+</body>
+</html>
